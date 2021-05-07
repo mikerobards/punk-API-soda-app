@@ -1,20 +1,22 @@
 // variable
 const urlBase = "https://api.punkapi.com/v2/beers"
-const beersDiv = document.getElementById('beers')
+const beersDiv = document.querySelector('.beers')
 
 async function getBeers() {
-    const res = await fetch(urlBase)
-    const data = await res.json()
+    const beerPromise = await fetch(urlBase)
+    const beers = await beerPromise.json()
 
-    console.log(data)
+    console.log(beers)
 
-    data.forEach(beer => {
-        const div = document.createElement('div')
-        div.innerHTML = `<p>${beer.name}</p>`
-        console.log(div)
-        beersDiv.appendChild(div)
+    let beersHTML = ''
+
+    beers.forEach(beer => {
+        beersHTML += `
+            <h3>${beer.name}</h3>
+        `
     })
 
+    beersDiv.innerHTML = beersHTML
 
 }
 
