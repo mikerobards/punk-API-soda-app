@@ -6,7 +6,7 @@ async function getBeers() {
     const beerPromise = await fetch(urlBase)
     const beers = await beerPromise.json()
 
-    console.log(beers)
+    console.log(beers[0])
 
     let beersHTML = ''
 
@@ -21,6 +21,15 @@ async function getBeers() {
                         <span>IBU: ${beer.ibu}</span>
                     </span>
                 </div>
+                    <div class="beer__content">
+                        <div class="beer__name">${beer.name}</div>
+                        <div class="beer__tagline">${beer.tagline}</div>
+                        <div class="beer__desc">${beer.description}</div>
+                        <div class="beer__food-pair">
+                        Pair with: ${beer.food_pairing.join('; ')}
+                        </div>
+
+                    </div>
             </div>
             
         `
